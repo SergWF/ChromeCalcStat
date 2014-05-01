@@ -1,0 +1,11 @@
+.statValue {
+    font-weight: bold;
+}
+
+.statButton {
+    font: 12px arial;
+}
+.parsedTextArea{
+    width:95%;
+    height:95%;
+}

@@ -1,0 +1,29 @@
+#reportPresentationDiv {
+    height:400px;
+    width: 350px;
+    position: fixed;
+    margin: 1;
+    padding: 5;
+    top: 100;
+    left: 100;
+    background-color: #efe;
+    font: 12px arial;
+    z-index: 1000000;
+    overflow-y: scroll;
+}
+
+#reportPresentationDiv table {
+    width: 100%;
+    border: 1;
+    border-collapse: collapse;
+
+}
+/* нечетная строка таблицы */
+#reportPresentationDiv table tr:nth-child(2n+1){
+    background-color: #EEEEEE;
+}
+
+/* четная строка таблицы */
+#reportPresentationDiv table tr:nth-child(2n){
+    background-color: #FFFFFF;
+}

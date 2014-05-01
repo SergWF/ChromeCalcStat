@@ -1,0 +1,33 @@
+{
+    "name": "NewsMan",
+    "version": "1.0.3",
+    "description": "Keeps data about checked news",
+    "background": {
+        "scripts": ["script/background.js"]
+    },
+    "page_action": {
+        "default_icon": "style/images/stat22.png",
+        "default_title": "News Manager"
+    },
+    "permissions": [
+        "tabs","contextMenus","storage"
+    ],
+    "icons": {
+        "128": "style/images/stat128.png"
+    },
+    "content_scripts": [
+        {
+            //"matches": [ "file://*" ],
+            "matches": [ "http://uplink.by.inofortis.info:1234/tags/news_modify.php*" ],
+            "js": ["script/jquery.js", "script/contentscript.js"],
+            "run_at": "document_idle",
+            "css":["style/css/reportView.css"],
+            "all_frames": false
+        }
+    ],
+    "manifest_version": 2,
+    "web_accessible_resources": [
+        "script/injectedIntoPage.js"
+    ]
+
+}

@@ -1,0 +1,397 @@
+<HTML>
+<HEAD><meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<TITLE>Изменение новостей</TITLE> 
+<link href="styles/styles.css" rel="stylesheet" type="text/css" />
+
+<script src="jquery/jquery.js" type="text/javascript"></script>
+<script src="jquery/jquery-ui.custom.js" type="text/javascript"></script>
+<script src="jquery/jquery.cookie.js" type="text/javascript"></script>
+<link href="src/skin/ui.dynatree.css" rel="stylesheet" type="text/css" id="skinSheet">
+<script src="src/jquery.dynatree.js" type="text/javascript"></script>
+
+ <script type="text/javascript">
+
+$("input[name='add_tag']").val("");
+
+ var treeData = [ ];
+
+ $(function(){
+
+ $("#tree3").dynatree({
+ checkbox: true,
+ selectMode: 2,
+ minExpandLevel: 2,
+ children: treeData,
+ onSelect: function(select, node) 
+ {
+    // Get a list of all selected nodes, and convert to a key array:
+    var selKeys = $.map(node.tree.getSelectedNodes(), function(node)
+    {
+     return node.data.key;
+    });
+
+    //alert(1);
+    $("input[name='add_tag']").val(selKeys.join(", "));
+    $("#echoSelection3").text(selKeys.join(", "));
+
+     // Get a list of all selected TOP nodes
+     var selRootNodes = node.tree.getSelectedNodes(true);
+     // ... and convert to a key array:
+     var selRootKeys = $.map(selRootNodes, function(node)
+        {
+        return node.data.key;
+	});
+    $("#echoSelectionRootKeys3").text(selRootKeys.join(", "));
+     $("#echoSelectionRoots3").text(selRootNodes.join(", "));
+ },
+ onDblClick: function(node, event) 
+ {
+     node.toggleSelect();
+ },
+ onKeydown: function(node, event) 
+ {
+    if( event.which == 32 ) 
+    {
+    node.toggleSelect();
+    return false;
+    }
+ },
+ // The following options are only required, if we have more than one tree on one page:
+ // initId: "treeData",
+ cookieId: "dynatree-Cb3",
+ idPrefix: "dynatree-Cb3-"
+ });
+
+ });
+ </script>
+
+</HEAD>
+<BODY>
+<div id="header"><h2><A HREF="index.html" target="_self">На главную</A><br><A HREF="news_modify.php" target='_self'>Новости</A></h2>
+<form name="news" method="post" action="news_modify.php">
+<TABLE BORDER="1" WIDTH="100%" CELLSPACING="2"><TH>Код</TH><TH>md5-сумма</TH><TH>Название</TH><TH>Дата</TH><TH>Длина</TH><TH>Картинки</TH><TH>Источник</TH>
+<tr>
+<td>67595</td>
+<input type="hidden" name="kod" value="67595" ></td>
+<td><input type="text" name="md5" value="a4701383832b10dda3b9ef5eeca7dd03" size="32" </td>
+<td><input type="text" name="news_name" value="" </td>
+<td><input type="text" name="date" value="2013-06-18" size="10" </td>
+<td><input type="text" name="len" value="0" size="10" </td>
+<td><input type="text" name="pic" value="0" size="9" </td>
+<td><input type="text" name="source" value="|ALL|" size="10" </td>
+</tr></table>
+<TABLE BORDER="1" WIDTH="100%" CELLSPACING="2"><TH>Создана</TH><TH>Ссылка</TH><tr>
+<td>2013-06-18</td>
+<td><input type="text" name="link" value="http://finance.tut.by/news353550.html" size="100" ></td><td>
+</tr></table>
+Добавить новость <input type="checkbox" name="ADD">
+    <input type="hidden" name="update" value="on">
+    <input id="abutton" type="submit" value="Обновить">
+    Удалить новость <input type="checkbox" name="delete"
+</div>
+<div id="wrapper"> <div id="content">
+<BIG>Оценки тэгов</BIG><BR>
+<TABLE BORDER="0" CELLSPACING="2"><tr>
+</table>
+</div></div><div id="navigation"><BIG>Связанные тэги</BIG><select size="25" multiple name="del_tag[]" style="width: 100%">
+</select>
+</div><div id="extra"><BIG>Доступные тэги</BIG><input type="hidden" name="add_tag" value="" > <br>
+<style type="text/css">
+a{display:block;color: #981793;padding:0px}
+</style>
+
+<script type="text/javascript">
+ var treeData = [
+ {title: "Служебное", isFolder: true, hideCheckbox: true, unselectable: true, key: "", children: [ 
+ {title: "Служебное2", isFolder: true, hideCheckbox: true, unselectable: true, key: "", children: [ 
+ {title: "Служебное3",hideCheckbox: true,unselectable: true, key: "Служебное3" }
+ ] },  ] }, 
+{title: "NULL", isFolder: true, hideCheckbox: true, unselectable: true, key: "NULL", children: [ 
+{title: "Автомобили", isFolder: true, hideCheckbox: true, unselectable: true, key: "Автомобили", children: [ {title: "Автомобили", key: "Автомобили" },
+{title: "Автомобилистам", key: "Автомобилистам" },
+{title: "Обзоры автомобилей", key: "Обзоры автомобилей" },
+{title: "Производители авто", key: "Производители авто" },
+{title: "Рынок автомобильной техники", key: "Рынок автомобильной техники" },
+ ] }, 
+{title: "Белорусь", isFolder: true, hideCheckbox: true, unselectable: true, key: "Белорусь", children: [ {title: "Беларусь во Второй Мировой", key: "Беларусь во Второй Мировой" },
+{title: "Белорусский язык", key: "Белорусский язык" },
+{title: "Белорусы плохие", key: "Белорусы плохие" },
+{title: "Белорусы хорошие", key: "Белорусы хорошие" },
+{title: "Бытовые события Беларуси", key: "Бытовые события Беларуси" },
+{title: "Бытовые события Витебска", key: "Бытовые события Витебска" },
+{title: "Бытовые события Минска", key: "Бытовые события Минска" },
+{title: "Достоинства Беларуси", key: "Достоинства Беларуси" },
+{title: "Настроения в Беларуси", key: "Настроения в Беларуси" },
+{title: "Непорядок Беларуси", key: "Непорядок Беларуси" },
+{title: "Светлое будущее Беларуси", key: "Светлое будущее Беларуси" },
+{title: "Традиции Беларуси", key: "Традиции Беларуси" },
+{title: "Улучшения в Беларуси", key: "Улучшения в Беларуси" },
+ ] }, 
+{title: "Временные теги", isFolder: true, hideCheckbox: true, unselectable: true, key: "Временные теги", children: [ {title: "9 мая", key: "9 мая" },
+{title: "Бостонский терракт", key: "Бостонский терракт" },
+{title: "Вторая Мировая Война", key: "Вторая Мировая Война" },
+{title: "Евровидение 2013", key: "Евровидение 2013" },
+{title: "Канский фестиваль", key: "Канский фестиваль" },
+{title: "Первое мая", key: "Первое мая" },
+{title: "Славянский базар", key: "Славянский базар" },
+{title: "Терракт в Лондоне", key: "Терракт в Лондоне" },
+{title: "Чемпионат мира по хоккею 2013", key: "Чемпионат мира по хоккею 2013" },
+ ] }, 
+{title: "Женское", isFolder: true, hideCheckbox: true, unselectable: true, key: "Женское", children: [ {title: "Дети", key: "Дети" },
+{title: "Женское", key: "Женское" },
+{title: "Женщинам тяжело", key: "Женщинам тяжело" },
+{title: "Звезды", key: "Звезды" },
+{title: "Личная история", key: "Личная история" },
+{title: "Личные истории - отношения", key: "Личные истории - отношения" },
+{title: "Личные истории - судьба", key: "Личные истории - судьба" },
+{title: "Мода", key: "Мода" },
+{title: "Обзоры для обучения", key: "Обзоры для обучения" },
+{title: "Обзоры для привлекательности", key: "Обзоры для привлекательности" },
+{title: "Обзоры хозяйственного", key: "Обзоры хозяйственного" },
+{title: "Отношения", key: "Отношения" },
+{title: "Популярная психология", key: "Популярная психология" },
+{title: "Похудение", key: "Похудение" },
+{title: "Привлекательность", key: "Привлекательность" },
+{title: "Психология отношений", key: "Психология отношений" },
+{title: "Родительское", key: "Родительское" },
+{title: "Свадебное", key: "Свадебное" },
+{title: "Секс-советы для женщин", key: "Секс-советы для женщин" },
+{title: "Семья", key: "Семья" },
+{title: "Хозяйственное", key: "Хозяйственное" },
+ ] }, 
+{title: "Здоровье", isFolder: true, hideCheckbox: true, unselectable: true, key: "Здоровье", children: [ {title: "Здоровье", key: "Здоровье" },
+{title: "Обзоры для здоровья", key: "Обзоры для здоровья" },
+{title: "Прогресс в медицине", key: "Прогресс в медицине" },
+{title: "Пугалки о здоровье", key: "Пугалки о здоровье" },
+{title: "Советы о здоровье", key: "Советы о здоровье" },
+ ] }, 
+{title: "Интернет", isFolder: true, hideCheckbox: true, unselectable: true, key: "Интернет", children: [ {title: "Facebook", key: "Facebook" },
+{title: "Google", key: "Google" },
+{title: "IT сфера", key: "IT сфера" },
+{title: "IT тусовка", key: "IT тусовка" },
+{title: "Twitter", key: "Twitter" },
+{title: "Интернет", key: "Интернет" },
+{title: "Интернет-бизнес", key: "Интернет-бизнес" },
+{title: "Интернет-компании", key: "Интернет-компании" },
+{title: "Пиратство и авторское право", key: "Пиратство и авторское право" },
+{title: "Социальные сети", key: "Социальные сети" },
+{title: "Хакерство", key: "Хакерство" },
+ ] }, 
+{title: "Искусство", isFolder: true, hideCheckbox: true, unselectable: true, key: "Искусство", children: [ {title: "Белорусские исполнители", key: "Белорусские исполнители" },
+{title: "Зарубежные исполнители", key: "Зарубежные исполнители" },
+{title: "Известные люди", key: "Известные люди" },
+{title: "Искусство", key: "Искусство" },
+{title: "Кино", key: "Кино" },
+{title: "Культурное мероприятие", key: "Культурное мероприятие" },
+{title: "Литература", key: "Литература" },
+{title: "Музыка", key: "Музыка" },
+{title: "Театр", key: "Театр" },
+{title: "Фотографии", key: "Фотографии" },
+ ] }, 
+{title: "Наука", isFolder: true, hideCheckbox: true, unselectable: true, key: "Наука", children: [ {title: "Естественные науки", key: "Естественные науки" },
+{title: "Исторические науки", key: "Исторические науки" },
+{title: "История Беларуси", key: "История Беларуси" },
+{title: "Космические программы", key: "Космические программы" },
+{title: "Космос", key: "Космос" },
+{title: "Культурная история Беларуси", key: "Культурная история Беларуси" },
+{title: "Математические науки", key: "Математические науки" },
+{title: "Очевидное и невероятное", key: "Очевидное и невероятное" },
+ ] }, 
+{title: "Общее", isFolder: true, hideCheckbox: true, unselectable: true, key: "Общее", children: [ {title: "Армия", key: "Армия" },
+{title: "Велосипедистам", key: "Велосипедистам" },
+{title: "Для пенсионеров", key: "Для пенсионеров" },
+{title: "Евреи", key: "Евреи" },
+{title: "Забота о гражданах", key: "Забота о гражданах" },
+{title: "Забота о слабых", key: "Забота о слабых" },
+{title: "Защита прав потребителя", key: "Защита прав потребителя" },
+{title: "Зло наказано", key: "Зло наказано" },
+{title: "Интриги", key: "Интриги" },
+{title: "Католическая церковь", key: "Католическая церковь" },
+{title: "Красивые девушки", key: "Красивые девушки" },
+{title: "Курьезные ситуации", key: "Курьезные ситуации" },
+{title: "Миграции", key: "Миграции" },
+{title: "Морализаторство", key: "Морализаторство" },
+{title: "Мусульмане", key: "Мусульмане" },
+{title: "Нацизм", key: "Нацизм" },
+{title: "Ностальгия по СССР", key: "Ностальгия по СССР" },
+{title: "Обзор развлечений", key: "Обзор развлечений" },
+{title: "Параноидные тенденции", key: "Параноидные тенденции" },
+{title: "Пасха", key: "Пасха" },
+{title: "Позитивная новость", key: "Позитивная новость" },
+{title: "Познавательное", key: "Познавательное" },
+{title: "Православная церковь", key: "Православная церковь" },
+{title: "Преодоление сложностей кем-то", key: "Преодоление сложностей кем-то" },
+{title: "Прикольное", key: "Прикольное" },
+{title: "Развлечения", key: "Развлечения" },
+{title: "Реформа образования", key: "Реформа образования" },
+{title: "Рукоделие", key: "Рукоделие" },
+{title: "Саморазвитие", key: "Саморазвитие" },
+{title: "Скандальное", key: "Скандальное" },
+{title: "Студенческое", key: "Студенческое" },
+{title: "Фрики", key: "Фрики" },
+{title: "ХЗ", key: "ХЗ" },
+ ] }, 
+{title: "Плохие/хорошие", isFolder: true, hideCheckbox: true, unselectable: true, key: "Плохие/хорошие", children: [ {title: "Большие корпорации - плохие", key: "Большие корпорации - плохие" },
+{title: "Милиция молодцы", key: "Милиция молодцы" },
+{title: "Милиция плохая", key: "Милиция плохая" },
+{title: "Чиновники плохие", key: "Чиновники плохие" },
+ ] }, 
+{title: "Политика", isFolder: true, hideCheckbox: true, unselectable: true, key: "Политика", children: [ {title: "Беларусь и демократия", key: "Беларусь и демократия" },
+{title: "Беларусь не уважают", key: "Беларусь не уважают" },
+{title: "Беларусь уважают", key: "Беларусь уважают" },
+{title: "Белорусь - ЕС", key: "Белорусь - ЕС" },
+{title: "Военные конфликты", key: "Военные конфликты" },
+{title: "Военные конфликты на Ближнем востоке", key: "Военные конфликты на Ближнем востоке" },
+{title: "Евросоюз", key: "Евросоюз" },
+{title: "Кадыров", key: "Кадыров" },
+{title: "Лукашенко", key: "Лукашенко" },
+{title: "Лукашенко весь в белом", key: "Лукашенко весь в белом" },
+{title: "Медведев", key: "Медведев" },
+{title: "Международная политика", key: "Международная политика" },
+{title: "Оппозиция", key: "Оппозиция" },
+{title: "Оппозиция Беларуси плохо", key: "Оппозиция Беларуси плохо" },
+{title: "Политика Беларуси", key: "Политика Беларуси" },
+{title: "Политика России", key: "Политика России" },
+{title: "Политическая аналитика", key: "Политическая аналитика" },
+{title: "Права и свободы", key: "Права и свободы" },
+{title: "Путин", key: "Путин" },
+{title: "Путин хороший", key: "Путин хороший" },
+{title: "Таможенный Союз", key: "Таможенный Союз" },
+{title: "Угроза КНДР", key: "Угроза КНДР" },
+ ] }, 
+{title: "Природа", isFolder: true, hideCheckbox: true, unselectable: true, key: "Природа", children: [ {title: "Домашние животные", key: "Домашние животные" },
+{title: "Животные", key: "Животные" },
+{title: "Обзор для путешествующих", key: "Обзор для путешествующих" },
+{title: "Обычаи и нравы страны", key: "Обычаи и нравы страны" },
+{title: "Полезное для путешественников", key: "Полезное для путешественников" },
+{title: "Природа", key: "Природа" },
+{title: "Прогноз погоды", key: "Прогноз погоды" },
+{title: "Путешествие", key: "Путешествие" },
+{title: "Экология", key: "Экология" },
+ ] }, 
+{title: "Происшествия", isFolder: true, hideCheckbox: true, unselectable: true, key: "Происшествия", children: [ {title: "Алкоголизм", key: "Алкоголизм" },
+{title: "Асоциальный протест", key: "Асоциальный протест" },
+{title: "Беларуский криминал", key: "Беларуский криминал" },
+{title: "ДТП", key: "ДТП" },
+{title: "Злая новость", key: "Злая новость" },
+{title: "Катастрофа", key: "Катастрофа" },
+{title: "Мошенничество", key: "Мошенничество" },
+{title: "Мошенничество в Беларуси", key: "Мошенничество в Беларуси" },
+{title: "Нехорошие происшествия", key: "Нехорошие происшествия" },
+{title: "Нехорошие происшествия в Белоруссии", key: "Нехорошие происшествия в Белоруссии" },
+{title: "Преступление", key: "Преступление" },
+{title: "Преступление в Беларуси", key: "Преступление в Беларуси" },
+{title: "Преступление с насилием в Беларуси", key: "Преступление с насилием в Беларуси" },
+{title: "Преступления с насилием", key: "Преступления с насилием" },
+{title: "Страдают дети", key: "Страдают дети" },
+{title: "Страдают люди", key: "Страдают люди" },
+{title: "Терроризм", key: "Терроризм" },
+ ] }, 
+{title: "Секс", isFolder: true, hideCheckbox: true, unselectable: true, key: "Секс", children: [ {title: "ЛГБТ", key: "ЛГБТ" },
+{title: "Секс", key: "Секс" },
+ ] }, 
+{title: "Спорт", isFolder: true, hideCheckbox: true, unselectable: true, key: "Спорт", children: [ {title: "Автоспорт", key: "Автоспорт" },
+{title: "Баскетбол", key: "Баскетбол" },
+{title: "Белорусский футбол", key: "Белорусский футбол" },
+{title: "Биатлон", key: "Биатлон" },
+{title: "Боевые искусства", key: "Боевые искусства" },
+{title: "Бокс", key: "Бокс" },
+{title: "Борьба", key: "Борьба" },
+{title: "Велоспорт", key: "Велоспорт" },
+{title: "Волейбол", key: "Волейбол" },
+{title: "Гандбол", key: "Гандбол" },
+{title: "Гребля", key: "Гребля" },
+{title: "Легкая атлетика", key: "Легкая атлетика" },
+{title: "Лига Чемпионов", key: "Лига Чемпионов" },
+{title: "Мировой футбол", key: "Мировой футбол" },
+{title: "Настольный теннис", key: "Настольный теннис" },
+{title: "Парусный спорт", key: "Парусный спорт" },
+{title: "Плаванье", key: "Плаванье" },
+{title: "Русский футбол", key: "Русский футбол" },
+{title: "Спортивная гимнастика", key: "Спортивная гимнастика" },
+{title: "Теннис", key: "Теннис" },
+{title: "Тяжелая атлетика", key: "Тяжелая атлетика" },
+{title: "Успехи беларуских спортсменов", key: "Успехи беларуских спортсменов" },
+{title: "Формула-1", key: "Формула-1" },
+{title: "Футбол", key: "Футбол" },
+{title: "Хоккей", key: "Хоккей" },
+{title: "Художественная гимнастика", key: "Художественная гимнастика" },
+{title: "ЧМ по футболу 2014", key: "ЧМ по футболу 2014" },
+{title: "ЧМ по хоккею 2014", key: "ЧМ по хоккею 2014" },
+{title: "Шахматы", key: "Шахматы" },
+ ] }, 
+{title: "Страны", isFolder: true, hideCheckbox: true, unselectable: true, key: "Страны", children: [ {title: "Беларусь-Литва", key: "Беларусь-Литва" },
+{title: "Беларусь-Польша", key: "Беларусь-Польша" },
+{title: "Беларусь-Россия", key: "Беларусь-Россия" },
+{title: "Беларусь-Украина", key: "Беларусь-Украина" },
+{title: "Европа", key: "Европа" },
+{title: "Израиль", key: "Израиль" },
+{title: "Казахстан", key: "Казахстан" },
+{title: "Китай", key: "Китай" },
+{title: "Кыргызстан", key: "Кыргызстан" },
+{title: "Литва", key: "Литва" },
+{title: "Польша", key: "Польша" },
+{title: "Россия", key: "Россия" },
+{title: "Россия хорошая", key: "Россия хорошая" },
+{title: "СССР", key: "СССР" },
+{title: "Страны-друзья - антизападный блок", key: "Страны-друзья - антизападный блок" },
+{title: "США", key: "США" },
+{title: "Украина", key: "Украина" },
+ ] }, 
+{title: "Техника", isFolder: true, hideCheckbox: true, unselectable: true, key: "Техника", children: [ {title: "Apple", key: "Apple" },
+{title: "IPad", key: "IPad" },
+{title: "Microsoft", key: "Microsoft" },
+{title: "Samsung", key: "Samsung" },
+{title: "Высокие технологии", key: "Высокие технологии" },
+{title: "Гаджеты", key: "Гаджеты" },
+{title: "Комлектующие ПК", key: "Комлектующие ПК" },
+{title: "Компьютерная безопасность", key: "Компьютерная безопасность" },
+{title: "Компьютерные игры", key: "Компьютерные игры" },
+{title: "Компьютеры", key: "Компьютеры" },
+{title: "Мобильные операторы", key: "Мобильные операторы" },
+{title: "Ноутбуки", key: "Ноутбуки" },
+{title: "Обзоры бытовой техники", key: "Обзоры бытовой техники" },
+{title: "Обзоры гаджетов", key: "Обзоры гаджетов" },
+{title: "Обзоры компьютерной техники", key: "Обзоры компьютерной техники" },
+{title: "Оружие", key: "Оружие" },
+{title: "Периферия ПК", key: "Периферия ПК" },
+{title: "Планшет", key: "Планшет" },
+{title: "ПО", key: "ПО" },
+{title: "Производители техники", key: "Производители техники" },
+{title: "Промышленное оборудование", key: "Промышленное оборудование" },
+{title: "Смартфон", key: "Смартфон" },
+{title: "Фотоаппарат", key: "Фотоаппарат" },
+ ] }, 
+{title: "Экономика", isFolder: true, hideCheckbox: true, unselectable: true, key: "Экономика", children: [ {title: "Банки", key: "Банки" },
+{title: "Газовый вопрос", key: "Газовый вопрос" },
+{title: "Деньги", key: "Деньги" },
+{title: "Единое Экономическое Пространство", key: "Единое Экономическое Пространство" },
+{title: "Жилищный вопрос", key: "Жилищный вопрос" },
+{title: "Инвестиции", key: "Инвестиции" },
+{title: "Коммуналка", key: "Коммуналка" },
+{title: "Курсы валют", key: "Курсы валют" },
+{title: "Мировая экономика", key: "Мировая экономика" },
+{title: "Обзоры банковских услуг", key: "Обзоры банковских услуг" },
+{title: "Обзоры недвижимости", key: "Обзоры недвижимости" },
+{title: "Работа", key: "Работа" },
+{title: "Цены", key: "Цены" },
+{title: "Частный бизнес", key: "Частный бизнес" },
+{title: "Экономика IT- сферы", key: "Экономика IT- сферы" },
+{title: "Экономика Беларуси", key: "Экономика Беларуси" },
+{title: "Экономика бытовая", key: "Экономика бытовая" },
+{title: "Экономика в аграрной сфере", key: "Экономика в аграрной сфере" },
+{title: "Экономика в пищевой сфере", key: "Экономика в пищевой сфере" },
+{title: "Экономика в сфере машиностроения", key: "Экономика в сфере машиностроения" },
+{title: "Экономика в сфере недвижимости", key: "Экономика в сфере недвижимости" },
+{title: "Экономика в сфере туризма", key: "Экономика в сфере туризма" },
+{title: "Экономика в сфере хим промышленности", key: "Экономика в сфере хим промышленности" },
+{title: "Экономика в сфере энергетики", key: "Экономика в сфере энергетики" },
+{title: "Экономика легкой промышленности", key: "Экономика легкой промышленности" },
+{title: "Экономика России", key: "Экономика России" },
+{title: "Экономический кризис", key: "Экономический кризис" },
+ ] }, ] }, ]; </script>
+<div id="tree3" style="height:600px; overflow:hidden"></div>    </form></div>
+<div id="footer"><BR><BR><A HREF="index.html" target="_self">На главную</A></div>
+</div>
+</BODY>
+</HTML>
